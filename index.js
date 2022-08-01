@@ -6,8 +6,12 @@ const codeBox = document.querySelector('.code')
 const inputs = document.querySelectorAll("#right > .item > input")
 // 修改样式按钮
 const changeBtn = document.querySelector('.change')
-// 修改样式按钮
+// 全屏预览按钮
 const lookBtn = document.querySelector('.look')
+// 下载源码按钮
+const downBtn = document.querySelector('.down')
+// 清除全部按钮
+const clearBtn = document.querySelector('.clear')
 
 // 记录当前拖拽的元素
 let curr = null
@@ -76,6 +80,36 @@ Array.prototype
     component.ondragstart = _ => addComponent(component)
   })
 
+// 生成html代码
+const generateCode = code => `
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>预览页面</title>
+</head>
+<body>
+<div style="position: relative; width: 100%; min-height: 100vh;">${code}</div>
+</body>
+</html>`
+
+// 生成源码文件
+const generateCodeSource = (code, fileName) => {
+  const a = document.createElement('a')
+  // 下载文件的名字
+  a.download = fileName
+  a.style.display = 'none'
+  // 把内容变成Blob数据
+  const blob = new Blob([code])
+  // 创建链接
+  a.href = URL.createObjectURL(blob)
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+}
+
 // 改变元素属性
 changeBtn.onclick = _ => {
   const width = inputs[0].value
@@ -94,21 +128,9 @@ changeBtn.onclick = _ => {
   curr.style.color = color
 }
 
-// 查看预览区的源码
+// 全屏预览
 lookBtn.onclick = _ => {
-  const code = `
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>预览页面</title>
-</head>
-<body>
-<div style="position: relative; width: 100%; min-height: 100vh;">${midden.innerHTML}</div>
-</body>
-</html>`
+  const code = generateCode(midden.innerHTML)
   left.style.display = 'none'
   midden.style.display = 'none'
   right.style.display = 'none'
@@ -122,4 +144,15 @@ codeBox.ondblclick = _ => {
   left.style.display = 'block'
   midden.style.display = 'block'
   right.style.display = 'block'
+}
+
+// 下载源码文件
+downBtn.onclick = _ => {
+  const code = generateCode(midden.innerHTML)
+  generateCodeSource(code, 'index.html')
+}
+
+// 清除全部
+clearBtn.onclick = _ => {
+  midden.innerHTML = ''
 }
