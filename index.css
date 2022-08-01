@@ -23,6 +23,7 @@
   position: relative;
   background-color: #f1f2f6;
   overflow: scroll;
+  z-index: 0;
 }
 
 #right {
@@ -36,6 +37,17 @@
 #right .item {
   display: flex;
   justify-content: space-around;
+}
+
+.code {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: #f1f2f6;
 }
 
 .btn {
@@ -61,6 +73,7 @@
   width: 150px;
   height: 200px;
   border-radius: 5px;
+  cursor: nw-resize;
 }
 
 .text {
@@ -69,13 +82,8 @@
   font-weight: 600;
 }
 
-.code{
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  background-color: #f1f2f6;
+/* 元素选中框 */
+.selected {
+  border: 3px solid #ffa502 !important;
+  opacity: 0.5 !important;
 }
