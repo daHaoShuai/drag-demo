@@ -31,11 +31,20 @@ const drop = e => {
     child.style.top = top + 'px'
     child.style.left = left + 'px'
     child.textContent = curr.textContent
+    child.src = curr.getAttribute('src')
     child.style.zIndex = 1
     child.onclick = _ => {
       curr = child
-      inputs[0].value = top
-      inputs[1].value = left
+      // getBoundingClientRect() 返回一个矩形对象
+      // 包含6个属性: left right top bottom width height
+      // 元素在页面中相对于视口的位置
+      const rect = curr.getBoundingClientRect()
+      inputs[0].value = rect.width
+      inputs[1].value = rect.height
+      inputs[2].value = top
+      inputs[3].value = left
+      inputs[4].value = curr.textContent
+      inputs[5].value = curr.getAttribute('src')
     }
     midden.appendChild(child)
   }
@@ -61,10 +70,17 @@ Array.prototype
     component.ondragstart = _ => addComponent(component)
   })
 
-
 changeBtn.onclick = _ => {
-  const top = inputs[0].value
-  const left = inputs[1].value
+  const width = inputs[0].value
+  const height = inputs[1].value
+  const top = inputs[2].value
+  const left = inputs[3].value
+  const text = inputs[4].value
+  const src = inputs[5].value
+  curr.style.width = width + 'px'
+  curr.style.height = height + 'px'
   curr.style.top = top + 'px'
   curr.style.left = left + 'px'
+  curr.textContent = text
+  curr.src = src
 }
