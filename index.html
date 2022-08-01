@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>拖拽</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #left{
+      width: 20%; 
+      background-color: #dfe4ea; 
+      padding: 2%;
+    }
+    #midden{
+      width: 60%;
+      position: relative;
+      background-color: #f1f2f6;
+      overflow: scroll;
+    }
+    #right{
+      width: 20%;
+      background-color: #dfe4ea;
+      display: flex;
+      flex-direction: column;
+      padding: 2%;
+    }
+    #right .item{
+      display: flex;
+      justify-content: space-around;
+    }
+    .btn{
+      border: none; 
+      outline: none; 
+      background-color: #1abc9c;
+      padding: 2px 6px; 
+      border-radius: 5px;
+      color: #fff;
+    }
+    .inp{
+      border: none; 
+      outline: none;
+      padding: 4px 0 4px 10px; 
+      border-radius: 5px;
+      color: #2c3e50;
+    }
+    .image{
+      width: 150px;
+      height: 200px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div style="display: flex; width: 100%; min-height: 100vh; background-color: aliceblue;">
+    <div id="left">
+      <button class="btn" draggable="true">预览按钮</button>
+      <br><br>
+      <input class="inp" placeholder="预览输入框" type="text" draggable="true">
+      <br><br>
+      <img class="image" src="/img/demo.jpg" alt="">
+    </div>
+    <div id="midden">
+    </div>
+    <div id="right">
+      <label class="item">
+        top <input class="inp" type="text">
+      </label>
+      <br>
+      <label class="item">
+        left <input class="inp" type="text">
+      </label>
+      <br>
+      <label class="item">
+        <button class="btn change" style="width: 80%;">修改</button>
+      </label>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
