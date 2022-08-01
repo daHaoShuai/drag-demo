@@ -163,7 +163,7 @@ const generateCode = code => `
   <title>预览页面</title>
 </head>
 <body>
-<div style="position: relative; width: 100%; min-height: 100vh;">${code}</div>
+<div style="position: relative; width: 100%; min-height: 100vh;">${code.replaceAll('draggable="true"', '')}</div>
 </body>
 </html>`
 
@@ -214,7 +214,9 @@ changeBtn.onclick = _ => {
 
 // 全屏预览
 lookBtn.onclick = _ => {
+  clearAllselected()
   const code = generateCode(midden.innerHTML)
+  console.log('code', code)
   left.style.display = 'none'
   midden.style.display = 'none'
   right.style.display = 'none'
@@ -232,6 +234,9 @@ codeBox.ondblclick = _ => {
 
 // 下载源码文件
 downBtn.onclick = _ => {
+  // 清除掉组件的选中框
+  clearAllselected()
+  // 处理生成源码,去掉允许拖拽
   const code = generateCode(midden.innerHTML)
   generateCodeSource(code, 'index.html')
 }
