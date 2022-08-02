@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>拖拽</title>
+  <title>拖拽小例子</title>
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
   <div class="main">
+    <!-- 组件区域开始 -->
     <div id="left">
       <p 
       style="
@@ -45,8 +46,12 @@
         border-radius: 5px;" 
       src="/img/demo.jpg" alt="">
     </div>
+    <!-- 组件区域结束 -->
+    <!-- 编辑区域开始 -->
     <div id="midden">
     </div>
+    <!-- 编辑区域结束 -->
+    <!-- 属性区域开始 -->
     <div id="right">
       <label class="item">
         <span class="text">width</span>
@@ -104,7 +109,10 @@
         <button class="btn clear" style="width: 80%;">清除全部</button>
       </label>
     </div>
+    <!-- 属性区域结束 -->
+    <!-- 全屏预览区域开始 -->
     <div class="code"></div>
+    <!-- 全屏预览区域结束 -->
   </div>
   <script src="index.js"></script>
 </body>

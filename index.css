@@ -84,6 +84,6 @@
 
 /* 元素选中框 */
 .selected {
-  border: 3px solid #ffa502 !important;
-  opacity: 0.5 !important;
+  border: 3px solid #e74c3c !important;
+  opacity: 0.7 !important;
 }
