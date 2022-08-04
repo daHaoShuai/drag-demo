@@ -60,12 +60,13 @@ const drop = e => {
   if (curr) {
     // 清除编辑区域的所有选中和删除按钮
     clearAllselected()
-    const top = e.offsetY
-    const left = e.offsetX
     // getBoundingClientRect() 返回一个矩形对象
     // 包含6个属性: left right top bottom width height
     // 元素在页面中相对于视口的位置
     const rect = curr.getBoundingClientRect()
+    // 调整一下中心点的坐标为选中元素的中点位置
+    const top = e.offsetY - (rect.height / 2)
+    const left = e.offsetX - (rect.width / 2)
     // 克隆出当前操作的元素
     const child = curr.cloneNode()
     // 设置必要的定位属性,父元素设置了相对定位,所以这些添加的子元素都设置绝对定位
